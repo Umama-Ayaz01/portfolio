@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Umama Ayaz | IT Project Coordinator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#efede6;--bg2:#fbfaf6;--ink:#141414;--mute:#5c5b57;--line:#d3d0c4;--pink:#a8741a;--violet:#6f6f72;--cyan:#d9a441;--sun:#e0a93a;--grad:linear-gradient(135deg,#f6dc8b,#e0a93a 55%,#b9771a);
---hd:'Bricolage Grotesque','Trebuchet MS',sans-serif;--bd:'DM Sans',system-ui,sans-serif;
+--hd:'Bricolage Grotesque','Trebuchet MS',sans-serif;--bd:'Bricolage Grotesque','Trebuchet MS',sans-serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f11;--bg2:#1a1a1d;--ink:#f3f0e6;--mute:#a4a29a;--line:#36363b;--pink:#e0a93a;--violet:#8c8c93;--cyan:#f6dc8b}}
 :root[data-theme="dark"]{--bg:#0f0f11;--bg2:#1a1a1d;--ink:#f3f0e6;--mute:#a4a29a;--line:#36363b;--pink:#e0a93a;--violet:#8c8c93;--cyan:#f6dc8b}
@@ -23,7 +23,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:10;padding:calc(12px + env(safe-
 nav b{font:800 1.2rem var(--hd)}
 nav div{display:flex;gap:18px;font-size:.95rem}
 nav a{text-decoration:none;opacity:.85}nav a:hover{opacity:1;color:#ffd23f}
-@media(max-width:620px){nav div a:nth-child(-n+2){display:none}}
+
 #hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#f3f0e6;background:radial-gradient(90% 70% at 75% 30%,#3b3520 0%,#0f0f11 65%)}
 #c{position:absolute;inset:0;width:100%;height:100%}
 .hero-in{position:relative;z-index:2;pointer-events:none;padding-top:70px}
@@ -137,7 +137,7 @@ footer{background:#0f0f11;color:#8a8880;text-align:center;padding:22px;font-size
 .cbtn em{display:grid;place-items:center;width:32px;height:32px;padding:0;border-radius:50%}
 .ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .i-t{display:none}.cbtn.ok .i-c{display:none}.cbtn.ok .i-t{display:block}
-.sub{font-size:1.3rem;margin:44px 0 14px}.sub:first-child{margin-top:0}
+.sh{font:800 1.5rem/1.1 var(--hd);margin:52px 0 18px;color:var(--ink)}.sh:first-child{margin-top:0}.sh::after{content:'';display:block;width:44px;height:3px;border-radius:3px;background:var(--grad);margin-top:10px}
 .pm{display:grid;grid-template-columns:repeat(2,1fr);gap:0 44px}
 @media(max-width:760px){.pm{grid-template-columns:1fr}}
 .pmi{padding:16px 0;border-top:1px solid var(--line)}
@@ -223,11 +223,33 @@ footer{background:#0f0f11;color:#8a8880;text-align:center;padding:22px;font-size
 .beyond{border-left:3px solid var(--sun);padding-left:24px;max-width:680px}
 .beyond h3{font:italic 600 clamp(1.7rem,4vw,2.4rem)/1.15 'Fraunces',Georgia,serif;margin-bottom:10px;color:var(--pink)}
 .beyond p{margin:0;font-size:1.15rem;color:var(--mute)}
+
+button{font-family:inherit}
+button,a,.nd,.lb,.tabs button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{-webkit-user-select:none;user-select:none}
+button:focus:not(:focus-visible){outline:none}
+#contact h2{font-family:var(--hd);font-style:normal;font-weight:800;letter-spacing:-.03em}
+.beyond h3{font:800 clamp(1.6rem,4vw,2.3rem)/1.15 var(--hd);font-style:normal}
+.const{height:auto}
+.stage{position:relative;height:330px}
+.wsd{position:static;margin:20px 0 0;min-height:2.6em}
+@media(max-width:600px){.stage{height:310px}.wsd{font-size:1.05rem}}
+.mb{display:none;background:none;border:0;width:44px;height:44px;padding:0;cursor:pointer;color:#f3f0e6}
+.mb span{display:block;width:22px;height:2px;background:currentColor;margin:5px auto;border-radius:2px;transition:transform .3s,opacity .3s}
+@media(max-width:700px){
+.mb{display:block}
+nav div{position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:rgba(15,15,17,.97);backdrop-filter:blur(12px);padding:0 22px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .45s ease,opacity .3s,padding .3s}
+nav.open div{max-height:420px;opacity:1;pointer-events:auto;padding:6px 22px 16px}
+nav div a{display:block;padding:14px 0;font-size:1.05rem;border-bottom:1px solid rgba(255,255,255,.08)}
+nav div a:last-child{border:0}
+nav.open .mb span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.open .mb span:nth-child(2){opacity:0}
+nav.open .mb span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
 </style>
 </head>
 <body>
 <div id="xp"></div>
-<nav><button class="logo" id="logo" aria-label="Umama Ayaz. Tap to reveal the initials" aria-pressed="false"><span class="lu">U</span><span class="la">A</span></button><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
+<nav><button class="logo" id="logo" aria-label="Umama Ayaz. Tap to reveal the initials" aria-pressed="false"><span class="lu">U</span><span class="la">A</span></button><div id="menu"><a href="#about">About</a><a href="#experience">Journey</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#learning">Education</a><a href="#contact">Contact</a></div><button class="mb" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></nav>
 
 <header id="hero">
 <canvas id="c" aria-hidden="true"></canvas>
@@ -273,7 +295,7 @@ footer{background:#0f0f11;color:#8a8880;text-align:center;padding:22px;font-size
 
 <section id="skills" style="background:var(--bg2)"><div class="wrap">
 <h2>Tools &amp; strengths</h2>
-<h3 class="sub">Project management</h3><div class="pm"><div class="pmi"><h4>Project Coordination</h4><p>Keeping clients, developers and testers moving in the same direction from kickoff to release.</p></div><div class="pmi"><h4>Stakeholder Management</h4><p>Being the link between business and technical teams, so everyone hears the same thing.</p></div><div class="pmi"><h4>Requirement Gathering</h4><p>Turning client conversations into clear, actionable tasks, as I did on Pairlix.</p></div><div class="pmi"><h4>Agile/Scrum</h4><p>Running sprint ceremonies and keeping commitments visible. Registered Scrum Basics certified.</p></div><div class="pmi"><h4>Sprint Planning</h4><p>Breaking work into sprint-sized tasks and setting priorities with the developers.</p></div><div class="pmi"><h4>Status Tracking</h4><p>Watching timelines, dependencies and blockers, and following up before they slip.</p></div></div><h3 class="sub">Tools I work with</h3><div class="tools"><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v10"/></svg>Plan &amp; track<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Jira</span><span>ClickUp</span><span>Trello</span><span>Asana</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M6 3h8l4 4v14H6z"/><path d="M9 12h6M9 16h6"/></svg>Document<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Confluence</span><span>Google Docs</span><span>Sheets</span><span>Slides</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M4 5h16v11H9l-5 4z"/></svg>Communicate<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Slack</span><span>Google Meet</span><span>Gmail</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Report<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Excel</span><span>Progress tracking</span><span>Basic metrics</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>Technical foundation<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React.js</span><span>SQL</span></div></div></div></div><h3 class="sub">Working style</h3><div class="const"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="26" y1="18" x2="72" y2="12"/><line x1="72" y1="12" x2="74" y2="50"/><line x1="26" y1="18" x2="30" y2="52"/><line x1="30" y1="52" x2="74" y2="50"/><line x1="30" y1="52" x2="50" y2="86"/><line x1="74" y1="50" x2="50" y2="86"/></svg><button class="nd on" data-d="Explaining technical things simply." style="left:26%;top:18%"><span style="--dur:6s">Communication</span></button><button class="nd" data-d="Finding a way through blockers." style="left:72%;top:12%"><span style="--dur:7.5s">Problem Solving</span></button><button class="nd" data-d="Staying steady when priorities change." style="left:74%;top:50%"><span style="--dur:6.5s">Adaptability</span></button><button class="nd" data-d="Working across teams, not around them." style="left:30%;top:52%"><span style="--dur:8s">Collaboration</span></button><button class="nd" data-d="Making progress when the brief is unclear." style="left:50%;top:86%"><span style="--dur:7s">Working with Ambiguity</span></button><p class="wsd" id="wsd" aria-live="polite">Explaining technical things simply.</p></div></div></section>
+<h3 class="sh">Project management</h3><div class="pm"><div class="pmi"><h4>Project Coordination</h4><p>Keeping clients, developers and testers moving in the same direction from kickoff to release.</p></div><div class="pmi"><h4>Stakeholder Management</h4><p>Being the link between business and technical teams, so everyone hears the same thing.</p></div><div class="pmi"><h4>Requirement Gathering</h4><p>Turning client conversations into clear, actionable tasks, as I did on Pairlix.</p></div><div class="pmi"><h4>Agile/Scrum</h4><p>Running sprint ceremonies and keeping commitments visible. Registered Scrum Basics certified.</p></div><div class="pmi"><h4>Sprint Planning</h4><p>Breaking work into sprint-sized tasks and setting priorities with the developers.</p></div><div class="pmi"><h4>Status Tracking</h4><p>Watching timelines, dependencies and blockers, and following up before they slip.</p></div></div><h3 class="sh">Tools I work with</h3><div class="tools"><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v10"/></svg>Plan &amp; track<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Jira</span><span>ClickUp</span><span>Trello</span><span>Asana</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M6 3h8l4 4v14H6z"/><path d="M9 12h6M9 16h6"/></svg>Document<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Confluence</span><span>Google Docs</span><span>Sheets</span><span>Slides</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M4 5h16v11H9l-5 4z"/></svg>Communicate<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Slack</span><span>Google Meet</span><span>Gmail</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Report<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>Excel</span><span>Progress tracking</span><span>Basic metrics</span></div></div></div><div class="tr"><button class="lb" aria-expanded="false"><svg viewBox="0 0 24 24" class="ic"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>Technical foundation<svg viewBox="0 0 24 24" class="ic chev"><path d="M6 9l6 6 6-6"/></svg></button><div class="pn"><div class="it"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React.js</span><span>SQL</span></div></div></div></div><h3 class="sh">Working style</h3><div class="const"><div class="stage"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="26" y1="18" x2="72" y2="12"/><line x1="72" y1="12" x2="74" y2="50"/><line x1="26" y1="18" x2="30" y2="52"/><line x1="30" y1="52" x2="74" y2="50"/><line x1="30" y1="52" x2="50" y2="86"/><line x1="74" y1="50" x2="50" y2="86"/></svg><button class="nd on" data-d="Explaining technical things simply." style="left:26%;top:18%"><span style="--dur:6s">Communication</span></button><button class="nd" data-d="Finding a way through blockers." style="left:72%;top:12%"><span style="--dur:7.5s">Problem Solving</span></button><button class="nd" data-d="Staying steady when priorities change." style="left:74%;top:50%"><span style="--dur:6.5s">Adaptability</span></button><button class="nd" data-d="Working across teams, not around them." style="left:30%;top:52%"><span style="--dur:8s">Collaboration</span></button><button class="nd" data-d="Making progress when the brief is unclear." style="left:50%;top:86%"><span style="--dur:7s">Working with Ambiguity</span></button></div><p class="wsd" id="wsd" aria-live="polite">Explaining technical things simply.</p></div></div></section>
 
 <section id="learning"><div class="wrap"><h2>Education and certifications</h2>
 <div class="edu2"><article class="ed"><h3>Bachelor of Technology</h3><p class="sp">Computer Science &amp; Engineering</p><p class="cl">Trinity Institute of Technology &amp; Research, Bhopal</p><p class="gr"><svg viewBox="0 0 24 24" class="ic"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Graduated June 2025</p></article>
@@ -368,6 +390,12 @@ function rv(){tk=0;var h=innerHeight;wr.forEach(function(w){var r=w.getBoundingC
  if(!w.classList.contains(st)){w.classList.remove('pre','in','out');w.classList.add(st)}})}
 addEventListener('scroll',function(){if(!tk)tk=requestAnimationFrame(rv)},{passive:true});addEventListener('resize',rv);rv();
 
+
+var nv=document.querySelector('nav'),mb=document.getElementById('mb');
+function tg(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o)}
+mb.onclick=function(e){e.stopPropagation();tg(!nv.classList.contains('open'))};
+document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){tg(false)})});
+document.addEventListener('click',function(e){if(!nv.contains(e.target))tg(false)});
 </script>
 </body>
 </html>
