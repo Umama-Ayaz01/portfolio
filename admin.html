@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Inbox | Umama Ayaz</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f11;--c:#1a1a1d;--line:#36363b;--ink:#f3f0e6;--mute:#a4a29a;--gold:#e0a93a;--grad:linear-gradient(135deg,#f6dc8b,#e0a93a 55%,#b9771a);--f:'Bricolage Grotesque','Trebuchet MS',sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(80% 50% at 80% 0,#2b2716 0,var(--bg) 60%) no-repeat,var(--bg);color:var(--ink);font:400 1rem/1.6 var(--f);min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button,input,select{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:900px;margin:0 auto;padding:28px 20px 80px}
+h1{font-weight:800;font-size:clamp(1.8rem,5vw,2.6rem);margin:0;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:var(--c);border:1px solid var(--line);border-radius:18px}
+.login{max-width:400px;margin:12vh auto 0;padding:32px}
+.login h1{margin-bottom:6px}.login p{margin:0 0 20px;color:var(--mute)}
+label{display:grid;gap:6px;font-weight:600;font-size:.9rem;margin-bottom:14px}
+input,select{background:#121214;border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(224,169,58,.2)}
+.btn{border:0;border-radius:999px;padding:11px 22px;font-weight:700;cursor:pointer;background:var(--grad);color:#141414;text-decoration:none;display:inline-block;font-size:.95rem}
+.btn:disabled{opacity:.6}
+.ghost{background:none;color:var(--ink);border:1px solid var(--line)}.ghost:hover{border-color:var(--gold)}
+.err{color:#ffb4a2;min-height:1.4em;margin:10px 0 0;font-size:.92rem}
+.top{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;margin-bottom:22px}
+.top small{display:block;color:var(--mute)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.stat{padding:16px 18px}.stat b{display:block;font-size:1.9rem;font-weight:800;line-height:1.1}.stat span{color:var(--mute);font-size:.88rem}
+.bar{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin-bottom:18px}
+.bar input,.bar select{margin:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{background:#121214;border:0;padding:0 16px;cursor:pointer;color:var(--mute)}
+.seg button.on{background:var(--grad);color:#141414;font-weight:700}
+@media(max-width:640px){.bar{grid-template-columns:1fr}.seg button{flex:1;padding:11px}.stat b{font-size:1.5rem}}
+.msg{padding:20px 22px 16px;margin-bottom:14px;position:relative;transition:border-color .2s}
+.msg:hover{border-color:#5a5646}
+.msg.new{border-color:rgba(224,169,58,.6)}
+.msg.new::before{content:"";position:absolute;left:-5px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.msg header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px}
+.msg b{font-size:1.1rem;font-weight:700}.mail{color:var(--mute);font-size:.92rem;word-break:break-all}
+time{color:var(--mute);font-size:.85rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tags span{font-size:.8rem;padding:3px 12px;border-radius:999px;border:1px solid var(--line);color:#d8d5ca}
+.tags span:first-child{background:var(--grad);color:#141414;border:0;font-weight:700}
+.body{margin:0 0 14px;color:#d8d5ca;white-space:pre-wrap;word-break:break-word;cursor:pointer;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.body.open{display:block;-webkit-line-clamp:unset}
+.msg footer{display:flex;flex-wrap:wrap;gap:8px}
+.msg footer button,.msg footer a{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:.85rem;cursor:pointer;text-decoration:none;color:var(--ink)}
+.msg footer button:hover,.msg footer a:hover{border-color:var(--gold)}
+.msg footer .danger:hover{border-color:#ff7a6b;color:#ffb4a2}
+.empty{text-align:center;color:var(--mute);padding:50px 0}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--grad);color:#141414;font-weight:700;padding:10px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<main id="login" class="card login" hidden>
+<h1>Inbox</h1><p>Sign in to read your portfolio messages.</p>
+<form id="lf">
+<label>Email<input id="em" type="email" autocomplete="username" required></label>
+<label>Password<input id="pw" type="password" autocomplete="current-password" required></label>
+<button class="btn" id="lb" type="submit">Sign in</button>
+<p class="err" id="le" role="alert"></p>
+</form>
+</main>
+
+<div id="app" class="wrap" hidden>
+<div class="top">
+<div><h1>Inbox</h1><small id="who"></small></div>
+<div class="acts"><button class="btn ghost" id="rf">Refresh</button><button class="btn ghost" id="ex">Export CSV</button><button class="btn ghost" id="out">Sign out</button></div>
+</div>
+<div class="stats">
+<div class="card stat"><b id="s1">0</b><span>Total messages</span></div>
+<div class="card stat"><b id="s2">0</b><span>Unread</span></div>
+<div class="card stat"><b id="s3">0</b><span>Last 7 days</span></div>
+</div>
+<div class="bar">
+<input id="sr" type="search" placeholder="Search name, email or message" aria-label="Search messages">
+<select id="rs" aria-label="Filter by topic"><option value="">All topics</option></select>
+<div class="seg" id="sg"><button data-s="all" class="on">All</button><button data-s="unread">Unread</button><button data-s="read">Read</button></div>
+</div>
+<div id="list"></div>
+</div>
+<div id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+var SB_URL='https://xnrntzuvvfuhbbttrjow.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhucm50enV2dmZ1aGJidHRyam93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMTAwMDIsImV4cCI6MjEwNjU4NjAwMn0.eQLSWTi6_lQWwWKboydp18HDuxf9yIjpz1WvqoBsnMY';
+var T='contact_messages',sb=supabase.createClient(SB_URL,SB_KEY),all=[],st='all';
+var $=function(i){return document.getElementById(i)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(function(){e.classList.remove('on')},2000)}
+function ago(d){var s=(Date.now()-new Date(d))/1000;if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' h ago';if(s<604800)return Math.floor(s/86400)+' d ago';return new Date(d).toLocaleDateString()}
+function show(sess){$('login').hidden=!!sess;$('app').hidden=!sess;if(sess){$('who').textContent=sess.user.email;load()}}
+sb.auth.getSession().then(function(r){show(r.data.session)});
+sb.auth.onAuthStateChange(function(ev){if(ev==='SIGNED_OUT')show(null)});
+$('lf').onsubmit=function(e){e.preventDefault();var b=$('lb');b.disabled=true;$('le').textContent='';
+ sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value}).then(function(r){b.disabled=false;
+ if(r.error){$('le').textContent='Incorrect email or password.';return}$('pw').value='';show(r.data.session)})};
+$('out').onclick=function(){sb.auth.signOut()};
+$('rf').onclick=function(){load()};
+function load(){$('list').innerHTML='<p class="empty">Loading...</p>';
+ sb.from(T).select('*').order('created_at',{ascending:false}).then(function(r){
+  if(r.error){$('list').innerHTML='<p class="empty">Could not load messages: '+esc(r.error.message)+'</p>';return}
+  all=r.data||[];reasons();render()})}
+function reasons(){var s=$('rs'),v=s.value,u=[];all.forEach(function(m){if(m.reason&&u.indexOf(m.reason)<0)u.push(m.reason)});
+ s.innerHTML='<option value="">All topics</option>'+u.map(function(x){return'<option>'+esc(x)+'</option>'}).join('');s.value=u.indexOf(v)>-1?v:''}
+function render(){
+ var q=$('sr').value.trim().toLowerCase(),rs=$('rs').value,wk=Date.now()-6048e5;
+ $('s1').textContent=all.length;$('s2').textContent=all.filter(function(m){return!m.is_read}).length;
+ $('s3').textContent=all.filter(function(m){return new Date(m.created_at)>wk}).length;
+ var L=all.filter(function(m){return(st=='all'||(st=='read')==!!m.is_read)&&(!rs||m.reason==rs)&&(!q||(m.name+' '+m.email+' '+m.message).toLowerCase().indexOf(q)>-1)});
+ $('list').innerHTML=L.length?L.map(function(m){
+  return'<article class="card msg'+(m.is_read?'':' new')+'" data-id="'+esc(m.id)+'"><header><div><b>'+esc(m.name)+'</b> <span class="mail">'+esc(m.email)+'</span></div><time title="'+esc(new Date(m.created_at).toLocaleString())+'">'+ago(m.created_at)+'</time></header>'
+  +'<div class="tags">'+(m.reason?'<span>'+esc(m.reason)+'</span>':'')+(m.work_mode?'<span>'+esc(m.work_mode)+'</span>':'')+'</div>'
+  +'<p class="body">'+esc(m.message)+'</p><footer><button data-a="read">'+(m.is_read?'Mark as unread':'Mark as read')+'</button>'
+  +'<a href="mailto:'+encodeURIComponent(m.email)+'?subject='+encodeURIComponent('Re: '+(m.reason||'Your message'))+'">Reply</a>'
+  +'<button data-a="copy">Copy email</button><button data-a="del" class="danger">Delete</button></footer></article>'}).join(''):'<p class="empty">No messages to show.</p>'}
+function find(id){return all.filter(function(m){return String(m.id)===id})[0]}
+function setRead(m,v){return sb.from(T).update({is_read:v}).eq('id',m.id).select().then(function(r){
+ if(r.error||!r.data||!r.data.length){toast('Could not update. Check your permissions.');return false}m.is_read=v;return true})}
+$('list').onclick=function(e){var a=e.target.closest('[data-a]'),art=e.target.closest('.msg');if(!art)return;var m=find(art.dataset.id);if(!m)return;
+ if(e.target.classList.contains('body')){e.target.classList.toggle('open');if(!m.is_read)setRead(m,true).then(function(ok){if(ok){art.classList.remove('new');$('s2').textContent=all.filter(function(x){return!x.is_read}).length;art.querySelector('[data-a=read]').textContent='Mark as unread'}});return}
+ if(!a)return;var k=a.dataset.a;
+ if(k=='read')setRead(m,!m.is_read).then(function(ok){if(ok)render()});
+ if(k=='copy'){var t=m.email;function d(){toast('Email copied')}
+  if(navigator.clipboard)navigator.clipboard.writeText(t).then(d,d);else d()}
+ if(k=='del'&&confirm('Delete this message from '+m.name+'? This cannot be undone.'))
+  sb.from(T).delete().eq('id',m.id).select().then(function(r){if(r.error||!r.data||!r.data.length){toast('Could not delete.');return}all=all.filter(function(x){return x!==m});reasons();render();toast('Message deleted')})};
+$('sr').oninput=render;$('rs').onchange=render;
+$('sg').onclick=function(e){var b=e.target.closest('button');if(!b)return;st=b.dataset.s;[].forEach.call($('sg').children,function(x){x.classList.toggle('on',x===b)});render()};
+$('ex').onclick=function(){
+ function c(v){v=String(v==null?'':v);if(/^[=+\-@]/.test(v))v="'"+v;return'"'+v.replace(/"/g,'""')+'"'}
+ var rows=[['Date','Name','Email','Topic','Work setup','Message','Read']].concat(all.map(function(m){return[m.created_at,m.name,m.email,m.reason,m.work_mode,m.message,m.is_read?'yes':'no']}));
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.map(function(r){return r.map(c).join(',')}).join('\n')],{type:'text/csv'}));
+ a.download='portfolio-messages.csv';document.body.appendChild(a);a.click();a.remove()};
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&!$('app').hidden)load()});
+</script>
+</body>
+</html>
