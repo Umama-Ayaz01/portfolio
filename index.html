@@ -287,6 +287,7 @@ nav.open .mb span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
 #contact #cfs{margin:0;max-width:none;min-height:1.4em;font-weight:600;font-size:.95rem}
 #contact #cfs.ok{color:#f6dc8b}#contact #cfs.err{color:#ffb4a2}
 #contact .alt{margin:0 auto 14px;font-size:.95rem}
+.cf label small{font-weight:400;color:#a4a29a}
 </style>
 </head>
 <body>
@@ -352,7 +353,8 @@ nav.open .mb span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
 <p>Have a project that needs someone to keep everyone aligned? Send me a message.</p>
 <form id="cf" class="cf" novalidate>
 <div class="g2"><label>Name<input name="name" required maxlength="100" autocomplete="name"></label><label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label></div>
-<label>What would you like to talk about?<select name="reason"><option>Project opportunity</option><option>Job opportunity</option><option>Collaboration</option><option>General question</option></select></label>
+<div class="g2"><label>What are you reaching out about?<select name="reason"><option>Full-time role</option><option>Part-time role</option><option>Contract or freelance project</option><option>Collaboration</option><option>General question</option></select></label>
+<label>How would you like to work together? <small>(optional)</small><select name="work_mode"><option value="">Choose one</option><option>Remote</option><option>Hybrid</option><option>On-site</option><option>Not sure yet</option></select></label></div>
 <label>Message<textarea name="message" rows="5" required maxlength="2000"></textarea></label>
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn b1" type="submit">Send message</button>
@@ -433,7 +435,7 @@ n.onmouseenter=on;n.onclick=on;n.onfocus=on});
 
 var trs=document.querySelectorAll('.tr');function setTr(t,o){t.classList.toggle('open',o);t.querySelector('.lb').setAttribute('aria-expanded',o)}
 trs.forEach(function(t,i){t.querySelector('.lb').onclick=function(){var o=!t.classList.contains('open');trs.forEach(function(x){setTr(x,false)});setTr(t,o)};if(i==0)setTr(t,true)});
-var lg=document.getElementById('logo');lg.onclick=function(){var o=lg.classList.toggle('on');lg.setAttribute('aria-pressed',o)};
+var lg=document.getElementById('logo');lg.onclick=function(){var o=lg.classList.toggle('on');lg.setAttribute('aria-pressed',o);tg(false);scrollTo({top:0,behavior:'smooth'})};
 var wr=document.querySelectorAll('section>.wrap'),tk=0;wr.forEach(function(w){w.classList.add('rv','pre')});
 function rv(){tk=0;var h=innerHeight;wr.forEach(function(w){var r=w.getBoundingClientRect(),st=r.bottom<h*.25?'out':(r.top<h*.88?'in':'pre');
  if(!w.classList.contains(st)){w.classList.remove('pre','in','out');w.classList.add(st)}})}
@@ -458,7 +460,7 @@ cf.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(c
  var b=cf.querySelector('button'),h={'Content-Type':'application/json',apikey:CFG.key,Prefer:'return=minimal'};
  if(CFG.key.indexOf('eyJ')===0)h.Authorization='Bearer '+CFG.key;
  b.disabled=true;say('Sending...');
- fetch(CFG.url+'/rest/v1/'+CFG.table,{method:'POST',headers:h,body:JSON.stringify({name:n,email:m,reason:d.get('reason'),message:g})})
+ fetch(CFG.url+'/rest/v1/'+CFG.table,{method:'POST',headers:h,body:JSON.stringify({name:n,email:m,reason:d.get('reason'),work_mode:d.get('work_mode')||null,message:g})})
  .then(function(r){if(!r.ok)throw 0;cf.reset();say('Thank you! Your message has been sent. I will get back to you soon.','ok')})
  .catch(function(){say('Sorry, that did not go through. Please try again or email me directly.','err')})
  .then(function(){b.disabled=false})});
