@@ -143,6 +143,24 @@ nav div a.rs{border:0;background:rgba(251,248,239,.16);padding:4px 13px;font-siz
 nav div a.rs .ic{width:15px;height:15px}
 nav div a.rs:hover{background:rgba(251,248,239,.3);color:inherit}
 @media(max-width:860px){nav div a.rs{background:none;padding:14px 0;font-size:1.02rem;gap:10px}nav div a.rs:hover{background:none}}
+
+@media(min-width:861px){nav div a.rs{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;border-radius:0;background:none;font-size:inherit;opacity:.9}nav div a.rs:hover{background:none;opacity:1;text-decoration:underline;text-underline-offset:6px;color:inherit}}
+#contact .cbn{display:flex;align-items:center;justify-content:space-between;gap:32px;text-align:left;padding:34px 38px;border:1px solid rgba(251,248,239,.22);border-radius:24px;background:rgba(251,248,239,.05);margin:0 auto 22px}
+#contact .cbn h2{font-size:clamp(1.8rem,4.2vw,2.9rem);margin-bottom:10px}
+#contact .cbn p{margin:0;max-width:520px}
+.cbn .btn{flex:none;margin:0}.cbn .btn .ic{transition:transform .3s}.cbn .btn.on .ic{transform:rotate(-90deg)}
+.cfw{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .5s ease,visibility 0s .5s}
+.cfw.open{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .5s ease,visibility 0s}
+.cfi{overflow:hidden;min-height:0}.cfi .cf{margin:6px auto 30px}
+.pg{border:0;padding:0;margin:0;min-width:0}.pg legend{padding:0;margin-bottom:10px;font-weight:500;font-size:.9rem;color:rgba(251,248,239,.9)}.pg legend small{font-weight:400;opacity:.7}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.cf .pills label{display:block;position:relative;font-size:.9rem;font-weight:400;gap:0}
+.cf .pills input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer;background:none;box-shadow:none}
+.pills span{display:block;padding:8px 18px;border-radius:999px;border:1px solid rgba(251,248,239,.35);color:var(--cream);transition:background .2s,color .2s,border-color .2s}
+.pills label:hover span{border-color:var(--cream)}
+.pills input:checked+span{background:var(--cream);color:#35432a;border-color:var(--cream);font-weight:500}
+.pills input:focus-visible+span{outline:2px solid var(--cream);outline-offset:2px}
+@media(max-width:800px){#contact .cbn{flex-direction:column;align-items:flex-start;padding:26px}}
 </style>
 </head>
 <body>
@@ -189,16 +207,15 @@ nav div a.rs:hover{background:rgba(251,248,239,.3);color:inherit}
 
 
 <section id="contact" style="position:relative;overflow:hidden"><svg class="leaf l4" aria-hidden="true"><use href="#lf"/></svg><div class="wrap">
-<h2>Let's get your project moving.</h2>
-<p>Have a project that needs someone to keep everyone aligned? Send me a message.</p>
-<form id="cf" class="cf" novalidate>
+<div class="cbn"><div><h2>Let's get your project moving.</h2><p>Have a project that needs someone to keep everyone aligned? Send me a message.</p></div><button class="btn b1" type="button" id="gt" aria-expanded="false" aria-controls="cfw"><span id="gtl">Get in touch</span><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+<div class="cfw" id="cfw"><div class="cfi"><form id="cf" class="cf" novalidate>
 <div class="g2"><label>Name<input name="name" required maxlength="100" autocomplete="name"></label><label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label></div>
-<div class="g2"><label>What are you reaching out about?<select name="reason"><option>Full-time role</option><option>Part-time role</option><option>Contract or freelance project</option><option>Collaboration</option><option>General question</option></select></label>
-<label>How would you like to work together? <small>(optional)</small><select name="work_mode"><option value="">Choose one</option><option>Remote</option><option>Hybrid</option><option>On-site</option><option>Not sure yet</option></select></label></div>
+<fieldset class="pg"><legend>What are you reaching out about?</legend><div class="pills"><label><input type="radio" name="reason" value="Full-time role"><span>Full-time role</span></label><label><input type="radio" name="reason" value="Part-time role"><span>Part-time role</span></label><label><input type="radio" name="reason" value="Contract or freelance project"><span>Contract or freelance project</span></label><label><input type="radio" name="reason" value="Collaboration"><span>Collaboration</span></label><label><input type="radio" name="reason" value="General question"><span>General question</span></label></div></fieldset>
+<fieldset class="pg opt"><legend>How would you like to work together? <small>(optional)</small></legend><div class="pills"><label><input type="radio" name="work_mode" value="Remote"><span>Remote</span></label><label><input type="radio" name="work_mode" value="Hybrid"><span>Hybrid</span></label><label><input type="radio" name="work_mode" value="On-site"><span>On-site</span></label><label><input type="radio" name="work_mode" value="Not sure yet"><span>Not sure yet</span></label></div></fieldset>
 <label>Message<textarea name="message" rows="5" required maxlength="2000"></textarea></label>
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn b1" type="submit">Send message</button>
-<p id="cfs" role="status"></p></form>
+<p id="cfs" role="status"></p></form></div></div>
 <p class="alt">Prefer to reach out directly?</p>
 <div class="cc"><button class="cbtn" data-copy="ayazumama049@gmail.com" aria-label="Copy email address" title="Copy email"><span>ayazumama049@gmail.com</span><em><svg viewBox="0 0 24 24" class="ic i-c"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg viewBox="0 0 24 24" class="ic i-t"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></em></button>
 <button class="cbtn" data-copy="https://www.linkedin.com/in/umamaayaz" aria-label="Copy LinkedIn link" title="Copy LinkedIn link"><span>LinkedIn</span><em><svg viewBox="0 0 24 24" class="ic i-c"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg viewBox="0 0 24 24" class="ic i-t"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></em></button>
@@ -248,6 +265,7 @@ function say(t,c){cs.textContent=t;cs.className=c||''}
 cf.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(cf);if(d.get('website'))return;
  var n=(d.get('name')||'').trim(),m=(d.get('email')||'').trim(),g=(d.get('message')||'').trim();
  if(!n||!/^\S+@\S+\.\S+$/.test(m)||!g){say('Please add your name, a valid email and a message.','err');return}
+ if(!d.get('reason')){say('Please choose what you are reaching out about.','err');return}
  if(CFG.url.indexOf('YOUR_')>-1){say('The form is not connected yet. Please use the email button below.','err');return}
  var b=cf.querySelector('button'),h={'Content-Type':'application/json',apikey:CFG.key,Prefer:'return=minimal'};
  if(CFG.key.indexOf('eyJ')===0)h.Authorization='Bearer '+CFG.key;
@@ -257,6 +275,13 @@ cf.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(c
  .catch(function(){say('Sorry, that did not go through. Please try again or email me directly.','err')})
  .then(function(){b.disabled=false})});
 
+
+var gt=document.getElementById('gt'),cw=document.getElementById('cfw');
+function openForm(o,f){cw.classList.toggle('open',o);gt.classList.toggle('on',o);gt.setAttribute('aria-expanded',o);document.getElementById('gtl').textContent=o?'Close':'Get in touch';
+ if(o&&f&&!matchMedia('(pointer:coarse)').matches)setTimeout(function(){cf.querySelector('[name=name]').focus({preventScroll:true})},450)}
+gt.onclick=function(){openForm(!cw.classList.contains('open'),true)};
+document.querySelectorAll('a[href="#contact"]').forEach(function(a){if(!a.closest('#menu'))a.addEventListener('click',function(){openForm(true,true)})});
+document.querySelectorAll('.pg.opt input').forEach(function(r){r.addEventListener('pointerdown',function(){r.dataset.was=r.checked?'1':'0'});r.addEventListener('click',function(){if(r.dataset.was==='1'){r.checked=false;r.dataset.was='0'}})});
 </script>
 </body>
 </html>
